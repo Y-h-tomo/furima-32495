@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| last-name       | string | null: false |
-| first-name      | string | null: false |
-| last-name-kana  | string | null: false |
-| first-name-kana | string | null: false |
-| birth-date      | date   | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+| birth_date         | date   | null: false |
 
 ### Association
 
@@ -20,18 +20,17 @@
 
 ## items テーブル
 
-| Column        | Type                 | Options                        |
-| ------------- | -------------------- | ------------------------------ |
-| user          | references           | null: false, foreign_key: true |
-| image         | ActiveStorage で実装 |
-| item-name     | text                 | null: false                    |
-| description   | text                 | null: false                    |
-| category      | ActiveHash で実装    |
-| condition     | ActiveHash で実装    |
-| shipping-cost | ActiveHash で実装    |
-| prefecture    | ActiveHash で実装    |
-| shipping-date | ActiveHash で実装    |
-| price         | integer              | null: false                    |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| item-name        | text       | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
 
 ### Association
 
@@ -40,18 +39,18 @@
 
 ## orders テーブル
 
-| Column        | Type              | Options     |
-| ------------- | ----------------- | ----------- |
-| postal        | string            | null: false |
-| prefecture    | ActiveHash で実装 |
-| city          | text              | null: false |
-| address       | text              | null: false |
-| building-name | text              |             |
-| phone-number  | string            | null: false |
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| postal        | string  | null: false |
+| prefecture_id | integer | null: false |
+| city          | text    | null: false |
+| address       | text    | null: false |
+| building_name | text    |             |
+| phone_number  | string  | null: false |
 
 ### Association
 
-- has_one :purchases
+- belongs_to :purchases
 
 ## purchases 　テーブル
 
@@ -65,7 +64,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :order
+- has_one :order
 
 # furima-32495 の ER 図
 
