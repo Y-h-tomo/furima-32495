@@ -68,4 +68,3 @@
 
 # furima-32495 の ER 図
 
-![furima-32495のER図](public/furima-32495.png)
