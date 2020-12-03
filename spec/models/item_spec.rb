@@ -42,6 +42,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping cost must be other than 1')
       end
+      it '発送元の地域についての情報の選択をしていないと商品登録できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+      end
       it '発送までの日数についての情報の選択をしていないと商品登録できない' do
         @item.shipping_date_id = 1
         @item.valid?
