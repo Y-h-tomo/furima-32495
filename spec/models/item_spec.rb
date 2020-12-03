@@ -9,6 +9,14 @@ RSpec.describe Item, type: :model do
       it '画像、商品名、商品説明、状態、配送料の負担、発送元の地域、発送までの日数、価格全ての情報が正しく入力されていたら、商品が出品できる' do
         expect(@item).to be_valid
       end
+      it '情報が正しく入力されており、価格が300円なら商品が出品できる' do
+        @item.price = 300
+        expect(@item).to be_valid
+      end
+      it '情報が正しく入力されており、価格が9,999,999円なら商品が出品できる' do
+        @item.price = 9_999_999
+        expect(@item).to be_valid
+      end
     end
 
     context '商品が出品できない時' do
@@ -60,12 +68,12 @@ RSpec.describe Item, type: :model do
       it '価格の範囲が300円未満だと商品登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than 300')
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
       it '価格の範囲が10,000,000円以上だと商品登録できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than 9999999')
+        expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
       it '価格設定が全角だと商品登録できない' do
         @item.price = '12345'.tr('0-9', '０-９')
