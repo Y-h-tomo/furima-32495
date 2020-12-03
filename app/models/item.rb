@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
 
+  validates :image, presence: true
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than: 300, less_than: 9_999_999 }
