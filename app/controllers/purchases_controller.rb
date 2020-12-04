@@ -1,7 +1,8 @@
 class PurchasesController < ApplicationController
+  before_action :find_item
+
   def index
     @purchase = PurchaseForm.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -15,6 +16,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def find_item
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_params
     params.require(:purchase_form).permit(
