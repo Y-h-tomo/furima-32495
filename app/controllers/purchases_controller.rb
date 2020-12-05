@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = PurchaseForm.new(purchase_params)
     if @purchase.valid?
-      @purchase.save
+      @purchase.save!
       redirect_to root_path
     else
       render action: :index
