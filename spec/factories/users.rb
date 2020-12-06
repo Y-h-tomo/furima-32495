@@ -3,7 +3,7 @@ FactoryBot.define do
   factory :user, class: User do
     nickname              { Faker::Name.name }
     email                 { Faker::Internet.free_email }
-    password              { Faker::Internet.password(min_length: 6) }
+    password              { Faker::Internet.password(min_length: 6, max_length: 30) }
     password_confirmation { password }
     last_name          { person.last.kanji }
     first_name         { person.first.hiragana }
@@ -14,7 +14,7 @@ FactoryBot.define do
   factory :another_user, class: User do
     nickname              { Faker::Name.name }
     email                 { Faker::Internet.free_email }
-    password              { Faker::Internet.password(min_length: 6) }
+    password              { Faker::Internet.password(min_length: 6, max_length: 30) }
     password_confirmation { password }
     last_name          { person.last.kanji }
     first_name         { person.first.hiragana }
