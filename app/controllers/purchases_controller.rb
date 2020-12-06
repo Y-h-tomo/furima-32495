@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :find_item
+  before_action :move_to_root
+  before_action :purchase_move
 
   def index
     @purchase = PurchaseForm.new
@@ -20,6 +22,14 @@ class PurchasesController < ApplicationController
 
   def find_item
     @item = Item.find(params[:item_id])
+  end
+
+  def move_to_root
+    redirect_to root_path if current_user == @item.user
+  end
+
+  def purchase_move
+    redirect_to root_path unless Purchase.find_by(item_id: params[:item_id]).nil?
   end
 
   def purchase_params
