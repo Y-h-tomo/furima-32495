@@ -69,7 +69,7 @@ end
 
 RSpec.describe 'ユーザーログイン', type: :system do
   before do
-    @another_user = FactoryBot.create(:another_user)
+    @user = FactoryBot.create(:user)
   end
   context 'ログインができるとき' do
     it '保存されているユーザーの情報と合致すればログインができる' do
@@ -80,8 +80,8 @@ RSpec.describe 'ユーザーログイン', type: :system do
       # ログインページへ遷移する
       visit new_user_session_path
       # 正しいユーザー情報を入力する
-      fill_in 'email', with: @another_user.email
-      fill_in 'password', with: @another_user.password
+      fill_in 'email', with: @user.email
+      fill_in 'password', with: @user.password
       # ログインボタンを押す
       find('input[name="commit"]').click
       # トップページへ遷移することを確認する
