@@ -15,5 +15,6 @@ class User < ApplicationRecord
   validates :last_name_kana, format: { with: /\A[ァ-ン]+\z/ }
   validates :birth_date, presence: true
 
+  has_many :purchases
   has_many :items
 end
