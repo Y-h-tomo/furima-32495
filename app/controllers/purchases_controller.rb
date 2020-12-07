@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_item
   before_action :move_to_root
   before_action :purchase_move
