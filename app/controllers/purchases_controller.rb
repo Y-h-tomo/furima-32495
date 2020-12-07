@@ -30,7 +30,7 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_move
-    redirect_to root_path unless Purchase.find_by(item_id: params[:item_id]).nil?
+    redirect_to root_path unless @item.purchase.nil?
   end
 
   def purchase_params
