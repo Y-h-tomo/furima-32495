@@ -16,7 +16,7 @@ class PurchaseForm
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
-  def save!
+  def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
     Order.create(
       postal: postal,
